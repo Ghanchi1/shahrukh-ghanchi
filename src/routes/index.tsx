@@ -306,13 +306,13 @@ function Index() {
                 </div>
                 <div className={`pl-12 md:pl-0 mt-4 md:mt-0 ${i % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
                   <div className="p-6 rounded-2xl border border-border bg-card/60 backdrop-blur hover:border-primary/40 transition group">
-                    <div className="flex items-center gap-3 mb-3 h-10">
-                      <div className="h-10 w-10 rounded-lg bg-white/95 p-1.5 flex items-center justify-center">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="h-14 w-20 rounded-xl bg-white border border-border shadow-sm p-2.5 flex items-center justify-center shrink-0">
                         <img src={exp.logo} alt={exp.company} className="max-h-full max-w-full object-contain" />
                       </div>
                       {exp.sub && (
-                        <div className="h-8 px-2 rounded-md bg-white/95 flex items-center">
-                          <img src={exp.sub} alt="" className="max-h-full max-w-[80px] object-contain" />
+                        <div className="h-14 px-3 rounded-xl bg-white border border-border shadow-sm flex items-center">
+                          <img src={exp.sub} alt="" className="max-h-9 max-w-[110px] object-contain" />
                         </div>
                       )}
                       <ArrowUpRight className="ml-auto h-4 w-4 text-muted-foreground group-hover:text-primary transition" />
