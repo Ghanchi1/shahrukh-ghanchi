@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { name: "description", content: "Senior Product Manager with 10+ years building AI Agentic, CPaaS, SaaS & POS platforms." },
       { name: "author", content: "Shahrukh Ghanchi" },
       { property: "og:title", content: "Shahrukh Ghanchi — Senior Product Manager" },
-      { property: "og:description", content: "10+ years shipping AI Agentic, CPaaS & SaaS products." },
+      { property: "og:description", content: "Senior Product Manager with 10+ years building AI Agentic, CPaaS, SaaS & POS platforms." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Shahrukh Ghanchi — Senior Product Manager" },
+      { name: "twitter:description", content: "Senior Product Manager with 10+ years building AI Agentic, CPaaS, SaaS & POS platforms." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b8bda7cc-8afa-40ba-9303-a40e7f3c84fe/id-preview-35190d34--bd98e278-2c8b-4433-acae-97e38b407687.lovable.app-1777841399606.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b8bda7cc-8afa-40ba-9303-a40e7f3c84fe/id-preview-35190d34--bd98e278-2c8b-4433-acae-97e38b407687.lovable.app-1777841399606.png" },
     ],
     links: [
       {
