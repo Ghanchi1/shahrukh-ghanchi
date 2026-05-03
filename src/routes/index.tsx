@@ -136,6 +136,44 @@ const stats = [
   { icon: Zap, value: "30+", label: "Campaigns Led" },
 ];
 
+type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: string };
+
+function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
+  return (
+    <motion.div
+      className="absolute inset-0 hidden md:block pointer-events-none"
+      animate={{ rotate: 360 }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      {/* dashed orbit ring */}
+      <div
+        className="absolute top-1/2 left-1/2 rounded-full border border-dashed border-primary/25"
+        style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
+      />
+      {items.map((item, i) => {
+        const angle = (i / items.length) * 2 * Math.PI;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        const Icon = item.icon;
+        return (
+          <motion.div
+            key={item.label}
+            className="absolute top-1/2 left-1/2"
+            style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
+            animate={{ rotate: -360 }}
+            transition={{ duration, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card/95 backdrop-blur border border-border shadow-md hover:border-primary/60 hover:scale-110 transition whitespace-nowrap">
+              <Icon className="h-3.5 w-3.5 text-primary" />
+              <span className="text-xs font-medium">{item.label}</span>
+            </div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
 function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
