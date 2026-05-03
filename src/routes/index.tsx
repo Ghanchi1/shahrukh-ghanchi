@@ -14,6 +14,12 @@ import {
   Zap,
   Award,
   ArrowUpRight,
+  MessageSquare,
+  ShoppingBag,
+  CreditCard,
+  Shield,
+  Rocket,
+  BrainCircuit,
 } from "lucide-react";
 import portrait from "@/assets/shahrukh.jpg";
 import logoConvex from "@/assets/logos/convex.png";
@@ -130,6 +136,44 @@ const stats = [
   { icon: Zap, value: "30+", label: "Campaigns Led" },
 ];
 
+type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: string };
+
+function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
+  return (
+    <motion.div
+      className="absolute inset-0 hidden md:block pointer-events-none"
+      animate={{ rotate: 360 }}
+      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    >
+      {/* dashed orbit ring */}
+      <div
+        className="absolute top-1/2 left-1/2 rounded-full border border-dashed border-primary/25"
+        style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
+      />
+      {items.map((item, i) => {
+        const angle = (i / items.length) * 2 * Math.PI;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        const Icon = item.icon;
+        return (
+          <motion.div
+            key={item.label}
+            className="absolute top-1/2 left-1/2"
+            style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
+            animate={{ rotate: -360 }}
+            transition={{ duration, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card/95 backdrop-blur border border-border shadow-md hover:border-primary/60 hover:scale-110 transition whitespace-nowrap">
+              <Icon className="h-3.5 w-3.5 text-primary" />
+              <span className="text-xs font-medium">{item.label}</span>
+            </div>
+          </motion.div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
 function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -203,26 +247,46 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto"
+            className="relative mx-auto h-[28rem] w-[28rem] md:h-[32rem] md:w-[32rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-6 rounded-full opacity-60 blur-2xl"
+              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-60 blur-2xl"
               style={{ backgroundImage: "var(--gradient-hero)" }}
             />
-            <div className="relative h-72 w-72 md:h-96 md:w-96 rounded-full overflow-hidden border border-border" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
               <img src={portrait} alt="Shahrukh Ghanchi portrait" className="h-full w-full object-cover" />
             </div>
+
+            {/* Orbiting industry chips */}
+            <OrbitRing
+              radius={200}
+              duration={32}
+              items={[
+                { icon: Mic, label: "Voice AI" },
+                { icon: BrainCircuit, label: "Agentic AI" },
+                { icon: MessageSquare, label: "CPaaS" },
+                { icon: CreditCard, label: "POS Systems" },
+                { icon: ShoppingBag, label: "Q-Commerce" },
+                { icon: Shield, label: "Cybersecurity" },
+                { icon: Bot, label: "Conv. AI" },
+                { icon: Rocket, label: "PLG / SaaS" },
+              ]}
+            />
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="absolute -bottom-4 -left-4 bg-card/90 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 z-20 shadow-lg"
             >
-              <Bot className="h-5 w-5 text-primary" />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
               <div>
-                <div className="text-xs text-muted-foreground">Currently building</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
                 <div className="text-sm font-medium">Voice AI Agents</div>
               </div>
             </motion.div>
