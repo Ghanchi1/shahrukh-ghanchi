@@ -222,18 +222,20 @@ function Index() {
             </div>
 
             {/* Orbiting industry chips */}
-            <OrbitRing radius={210} duration={28}>
-              {[
+            <OrbitRing
+              radius={200}
+              duration={32}
+              items={[
                 { icon: Mic, label: "Voice AI" },
                 { icon: BrainCircuit, label: "Agentic AI" },
                 { icon: MessageSquare, label: "CPaaS" },
                 { icon: CreditCard, label: "POS Systems" },
                 { icon: ShoppingBag, label: "Q-Commerce" },
                 { icon: Shield, label: "Cybersecurity" },
-                { icon: Bot, label: "Conversational AI" },
+                { icon: Bot, label: "Conv. AI" },
                 { icon: Rocket, label: "PLG / SaaS" },
               ]}
-            </OrbitRing>
+            />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
