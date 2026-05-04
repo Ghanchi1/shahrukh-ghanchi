@@ -141,18 +141,19 @@ type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: str
 function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
   return (
     <div
-      className="absolute top-1/2 left-1/2 z-30 hidden md:block pointer-events-none"
+      className="absolute top-1/2 left-1/2 z-20 hidden md:block pointer-events-none"
       style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
+      aria-hidden="true"
     >
-      {/* dashed orbit ring */}
       <div className="absolute inset-0 rounded-full border border-dashed border-primary/30" />
-      {/* faint inner ring for depth */}
-      <div
-        className="absolute rounded-full border border-primary/10"
-        style={{ inset: "8%" }}
-      />
       <motion.div
-        className="absolute inset-0"
+        className="absolute -inset-3 rounded-full border border-primary/15"
+        animate={{ scale: [1, 1.025, 1], opacity: [0.45, 0.8, 0.45] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="absolute rounded-full border border-primary/10" style={{ inset: "14%" }} />
+      <motion.div
+        className="absolute inset-0 will-change-transform"
         animate={{ rotate: 360 }}
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
@@ -162,25 +163,25 @@ function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: nu
           const y = Math.sin(angle) * radius;
           const Icon = item.icon;
           return (
-            <motion.div
+            <div
               key={item.label}
               className="absolute top-1/2 left-1/2"
               style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
-              animate={{ rotate: -360, y: [0, -4, 0] }}
-              transition={{
-                rotate: { duration, repeat: Infinity, ease: "linear" },
-                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 },
-              }}
             >
               <motion.div
                 whileHover={{ scale: 1.15 }}
-                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/40 shadow-lg hover:border-primary transition whitespace-nowrap"
-                style={{ boxShadow: "0 8px 24px -8px oklch(0.55 0.18 155 / 35%)" }}
+                animate={{ rotate: -360, y: [0, -6, 0] }}
+                transition={{
+                  rotate: { duration, repeat: Infinity, ease: "linear" },
+                  y: { duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.12 },
+                }}
+                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/45 shadow-lg hover:border-primary transition whitespace-nowrap"
+                style={{ boxShadow: "var(--shadow-elegant)" }}
               >
                 <Icon className="h-3.5 w-3.5 text-primary" />
                 <span className="text-xs font-medium">{item.label}</span>
               </motion.div>
-            </motion.div>
+            </div>
           );
         })}
       </motion.div>
