@@ -243,6 +243,17 @@ function Index() {
               Senior Product Manager with <span className="text-foreground font-medium">10+ years</span> shipping AI Agentic, CPaaS, SaaS, POS and Cybersecurity products that grow.
             </motion.p>
 
+            <motion.div variants={fadeUp} className="mt-6 inline-flex bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 items-center gap-3 shadow-lg">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
+                <div className="text-sm font-medium">Voice AI Agents</div>
+              </div>
+            </motion.div>
+
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
               <a href="#experience" className="px-6 py-3 rounded-full font-medium text-primary-foreground transition hover:scale-105" style={{ backgroundImage: "var(--gradient-hero)", boxShadow: "var(--shadow-glow)" }}>
                 Explore my work
@@ -290,21 +301,6 @@ function Index() {
               ]}
             />
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="absolute bottom-1 left-1/2 z-30 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
-                <div className="text-sm font-medium">Voice AI Agents</div>
-              </div>
-            </motion.div>
           </motion.div>
         </motion.div>
       </section>
