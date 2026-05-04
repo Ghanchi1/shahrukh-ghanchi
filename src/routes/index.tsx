@@ -141,7 +141,7 @@ type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: str
 function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
   return (
     <motion.div
-      className="absolute inset-0 hidden md:block pointer-events-none"
+      className="absolute inset-0 z-20 hidden md:block pointer-events-none"
       animate={{ rotate: 360 }}
       transition={{ duration, repeat: Infinity, ease: "linear" }}
     >
@@ -163,7 +163,7 @@ function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: nu
             animate={{ rotate: -360 }}
             transition={{ duration, repeat: Infinity, ease: "linear" }}
           >
-            <div className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card/95 backdrop-blur border border-border shadow-md hover:border-primary/60 hover:scale-110 transition whitespace-nowrap">
+            <div className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/40 shadow-lg hover:border-primary hover:scale-110 transition whitespace-nowrap">
               <Icon className="h-3.5 w-3.5 text-primary" />
               <span className="text-xs font-medium">{item.label}</span>
             </div>
