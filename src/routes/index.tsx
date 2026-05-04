@@ -262,22 +262,22 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto h-[28rem] w-[28rem] md:h-[32rem] md:w-[32rem] flex items-center justify-center"
+            className="relative mx-auto h-[30rem] w-[30rem] md:h-[38rem] md:w-[38rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-60 blur-2xl"
+              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-45 blur-2xl"
               style={{ backgroundImage: "var(--gradient-hero)" }}
             />
-            <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="relative h-60 w-60 md:h-72 md:w-72 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
               <img src={portrait} alt="Shahrukh Ghanchi portrait" className="h-full w-full object-cover" />
             </div>
 
             {/* Orbiting industry chips */}
             <OrbitRing
-              radius={200}
-              duration={32}
+              radius={285}
+              duration={24}
               items={[
                 { icon: Mic, label: "Voice AI" },
                 { icon: BrainCircuit, label: "Agentic AI" },
@@ -294,7 +294,7 @@ function Index() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 z-20 shadow-lg"
+              className="absolute bottom-0 left-1/2 z-30 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
