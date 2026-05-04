@@ -141,17 +141,11 @@ type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: str
 function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
   return (
     <div
-      className="absolute top-1/2 left-1/2 z-20 hidden md:block pointer-events-none"
+      className="absolute top-1/2 left-1/2 z-20 pointer-events-none"
       style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
       aria-hidden="true"
     >
-      <div className="absolute inset-0 rounded-full border border-dashed border-primary/30" />
-      <motion.div
-        className="absolute -inset-3 rounded-full border border-primary/15"
-        animate={{ scale: [1, 1.025, 1], opacity: [0.45, 0.8, 0.45] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="absolute rounded-full border border-primary/10" style={{ inset: "14%" }} />
+      <div className="absolute inset-0 rounded-full border border-dashed border-border/60" />
       <motion.div
         className="absolute inset-0 will-change-transform"
         animate={{ rotate: 360 }}
@@ -169,23 +163,34 @@ function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: nu
               style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
             >
               <motion.div
-                whileHover={{ scale: 1.15 }}
-                animate={{ rotate: -360, y: [0, -6, 0] }}
-                transition={{
-                  rotate: { duration, repeat: Infinity, ease: "linear" },
-                  y: { duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.12 },
-                }}
-                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/45 shadow-lg hover:border-primary transition whitespace-nowrap"
-                style={{ boxShadow: "var(--shadow-elegant)" }}
+                animate={{ rotate: -360 }}
+                transition={{ rotate: { duration, repeat: Infinity, ease: "linear" } }}
+                className="pointer-events-auto flex items-center gap-1.5 px-2 py-1 md:px-2.5 md:py-1.5 rounded-full bg-card/70 backdrop-blur-sm border border-border/60 hover:border-primary/40 hover:bg-card transition whitespace-nowrap"
               >
-                <Icon className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-medium">{item.label}</span>
+                <Icon className="h-3 w-3 text-muted-foreground" />
+                <span className="text-[10px] md:text-xs font-medium text-muted-foreground">{item.label}</span>
               </motion.div>
             </div>
           );
         })}
       </motion.div>
     </div>
+  );
+}
+
+function ResponsiveOrbit({ items }: { items: OrbitItem[] }) {
+  return (
+    <>
+      <div className="md:hidden">
+        <OrbitRing items={items} radius={150} duration={28} />
+      </div>
+      <div className="hidden md:block lg:hidden">
+        <OrbitRing items={items} radius={230} duration={26} />
+      </div>
+      <div className="hidden lg:block">
+        <OrbitRing items={items} radius={270} duration={26} />
+      </div>
+    </>
   );
 }
 
@@ -273,34 +278,31 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto h-[33rem] w-[30rem] md:h-[42rem] md:w-[38rem] flex items-center justify-center"
+            className="relative mx-auto w-full max-w-[22rem] aspect-square md:max-w-[34rem] lg:max-w-[40rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-45 blur-2xl"
+              className="absolute h-64 w-64 md:h-80 md:w-80 rounded-full opacity-30 blur-2xl"
               style={{ backgroundImage: "var(--gradient-hero)" }}
             />
-            <div className="relative h-60 w-60 md:h-72 md:w-72 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="relative h-56 w-56 md:h-80 md:w-80 lg:h-96 lg:w-96 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
               <img src={portrait} alt="Shahrukh Ghanchi portrait" className="h-full w-full object-cover" />
             </div>
 
             {/* Orbiting industry chips */}
-            <OrbitRing
-              radius={285}
-              duration={24}
+            <ResponsiveOrbit
               items={[
                 { icon: Mic, label: "Voice AI" },
                 { icon: BrainCircuit, label: "Agentic AI" },
                 { icon: MessageSquare, label: "CPaaS" },
-                { icon: CreditCard, label: "POS Systems" },
+                { icon: CreditCard, label: "POS" },
                 { icon: ShoppingBag, label: "Q-Commerce" },
                 { icon: Shield, label: "Cybersecurity" },
                 { icon: Bot, label: "Conv. AI" },
                 { icon: Rocket, label: "PLG / SaaS" },
               ]}
             />
-
           </motion.div>
         </motion.div>
       </section>
