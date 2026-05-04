@@ -140,37 +140,51 @@ type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: str
 
 function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
   return (
-    <motion.div
-      className="absolute inset-0 z-20 hidden md:block pointer-events-none"
-      animate={{ rotate: 360 }}
-      transition={{ duration, repeat: Infinity, ease: "linear" }}
+    <div
+      className="absolute top-1/2 left-1/2 z-30 hidden md:block pointer-events-none"
+      style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
     >
       {/* dashed orbit ring */}
+      <div className="absolute inset-0 rounded-full border border-dashed border-primary/30" />
+      {/* faint inner ring for depth */}
       <div
-        className="absolute top-1/2 left-1/2 rounded-full border border-dashed border-primary/25"
-        style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
+        className="absolute rounded-full border border-primary/10"
+        style={{ inset: "8%" }}
       />
-      {items.map((item, i) => {
-        const angle = (i / items.length) * 2 * Math.PI;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-        const Icon = item.icon;
-        return (
-          <motion.div
-            key={item.label}
-            className="absolute top-1/2 left-1/2"
-            style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
-            animate={{ rotate: -360 }}
-            transition={{ duration, repeat: Infinity, ease: "linear" }}
-          >
-            <div className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/40 shadow-lg hover:border-primary hover:scale-110 transition whitespace-nowrap">
-              <Icon className="h-3.5 w-3.5 text-primary" />
-              <span className="text-xs font-medium">{item.label}</span>
-            </div>
-          </motion.div>
-        );
-      })}
-    </motion.div>
+      <motion.div
+        className="absolute inset-0"
+        animate={{ rotate: 360 }}
+        transition={{ duration, repeat: Infinity, ease: "linear" }}
+      >
+        {items.map((item, i) => {
+          const angle = (i / items.length) * 2 * Math.PI;
+          const x = Math.cos(angle) * radius;
+          const y = Math.sin(angle) * radius;
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={item.label}
+              className="absolute top-1/2 left-1/2"
+              style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
+              animate={{ rotate: -360, y: [0, -4, 0] }}
+              transition={{
+                rotate: { duration, repeat: Infinity, ease: "linear" },
+                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 },
+              }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.15 }}
+                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/40 shadow-lg hover:border-primary transition whitespace-nowrap"
+                style={{ boxShadow: "0 8px 24px -8px oklch(0.55 0.18 155 / 35%)" }}
+              >
+                <Icon className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs font-medium">{item.label}</span>
+              </motion.div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+    </div>
   );
 }
 
