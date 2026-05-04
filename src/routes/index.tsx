@@ -262,7 +262,7 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto h-[30rem] w-[30rem] md:h-[38rem] md:w-[38rem] flex items-center justify-center"
+            className="relative mx-auto h-[33rem] w-[30rem] md:h-[42rem] md:w-[38rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -294,7 +294,7 @@ function Index() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="absolute bottom-0 left-1/2 z-30 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg"
+              className="absolute bottom-1 left-1/2 z-30 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
