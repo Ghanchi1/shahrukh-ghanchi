@@ -141,18 +141,19 @@ type OrbitItem = { icon: React.ComponentType<{ className?: string }>; label: str
 function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: number; duration: number }) {
   return (
     <div
-      className="absolute top-1/2 left-1/2 z-30 hidden md:block pointer-events-none"
+      className="absolute top-1/2 left-1/2 z-20 hidden md:block pointer-events-none"
       style={{ width: radius * 2, height: radius * 2, transform: "translate(-50%, -50%)" }}
+      aria-hidden="true"
     >
-      {/* dashed orbit ring */}
       <div className="absolute inset-0 rounded-full border border-dashed border-primary/30" />
-      {/* faint inner ring for depth */}
-      <div
-        className="absolute rounded-full border border-primary/10"
-        style={{ inset: "8%" }}
-      />
       <motion.div
-        className="absolute inset-0"
+        className="absolute -inset-3 rounded-full border border-primary/15"
+        animate={{ scale: [1, 1.025, 1], opacity: [0.45, 0.8, 0.45] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="absolute rounded-full border border-primary/10" style={{ inset: "14%" }} />
+      <motion.div
+        className="absolute inset-0 will-change-transform"
         animate={{ rotate: 360 }}
         transition={{ duration, repeat: Infinity, ease: "linear" }}
       >
@@ -162,25 +163,25 @@ function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: nu
           const y = Math.sin(angle) * radius;
           const Icon = item.icon;
           return (
-            <motion.div
+            <div
               key={item.label}
               className="absolute top-1/2 left-1/2"
               style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
-              animate={{ rotate: -360, y: [0, -4, 0] }}
-              transition={{
-                rotate: { duration, repeat: Infinity, ease: "linear" },
-                y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.15 },
-              }}
             >
               <motion.div
                 whileHover={{ scale: 1.15 }}
-                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/40 shadow-lg hover:border-primary transition whitespace-nowrap"
-                style={{ boxShadow: "0 8px 24px -8px oklch(0.55 0.18 155 / 35%)" }}
+                animate={{ rotate: -360, y: [0, -6, 0] }}
+                transition={{
+                  rotate: { duration, repeat: Infinity, ease: "linear" },
+                  y: { duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.12 },
+                }}
+                className="pointer-events-auto flex items-center gap-2 px-3 py-2 rounded-full bg-card border border-primary/45 shadow-lg hover:border-primary transition whitespace-nowrap"
+                style={{ boxShadow: "var(--shadow-elegant)" }}
               >
                 <Icon className="h-3.5 w-3.5 text-primary" />
                 <span className="text-xs font-medium">{item.label}</span>
               </motion.div>
-            </motion.div>
+            </div>
           );
         })}
       </motion.div>
@@ -242,6 +243,17 @@ function Index() {
               Senior Product Manager with <span className="text-foreground font-medium">10+ years</span> shipping AI Agentic, CPaaS, SaaS, POS and Cybersecurity products that grow.
             </motion.p>
 
+            <motion.div variants={fadeUp} className="mt-6 inline-flex bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 items-center gap-3 shadow-lg">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
+                <div className="text-sm font-medium">Voice AI Agents</div>
+              </div>
+            </motion.div>
+
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
               <a href="#experience" className="px-6 py-3 rounded-full font-medium text-primary-foreground transition hover:scale-105" style={{ backgroundImage: "var(--gradient-hero)", boxShadow: "var(--shadow-glow)" }}>
                 Explore my work
@@ -261,22 +273,22 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto h-[28rem] w-[28rem] md:h-[32rem] md:w-[32rem] flex items-center justify-center"
+            className="relative mx-auto h-[33rem] w-[30rem] md:h-[42rem] md:w-[38rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-60 blur-2xl"
+              className="absolute h-72 w-72 md:h-96 md:w-96 rounded-full opacity-45 blur-2xl"
               style={{ backgroundImage: "var(--gradient-hero)" }}
             />
-            <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="relative h-60 w-60 md:h-72 md:w-72 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
               <img src={portrait} alt="Shahrukh Ghanchi portrait" className="h-full w-full object-cover" />
             </div>
 
             {/* Orbiting industry chips */}
             <OrbitRing
-              radius={200}
-              duration={32}
+              radius={285}
+              duration={24}
               items={[
                 { icon: Mic, label: "Voice AI" },
                 { icon: BrainCircuit, label: "Agentic AI" },
@@ -289,21 +301,6 @@ function Index() {
               ]}
             />
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 flex items-center gap-3 z-20 shadow-lg"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
-                <div className="text-sm font-medium">Voice AI Agents</div>
-              </div>
-            </motion.div>
           </motion.div>
         </motion.div>
       </section>
