@@ -165,10 +165,10 @@ function OrbitRing({ items, radius, duration }: { items: OrbitItem[]; radius: nu
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ rotate: { duration, repeat: Infinity, ease: "linear" } }}
-                className="pointer-events-auto flex items-center gap-1.5 px-2 py-1 md:px-2.5 md:py-1.5 rounded-full bg-card/70 backdrop-blur-sm border border-border/60 hover:border-primary/40 hover:bg-card transition whitespace-nowrap"
+                className="pointer-events-auto flex items-center gap-1 px-1.5 py-0.5 md:px-2 md:py-1 rounded-full bg-card/40 backdrop-blur-sm border border-border/40 hover:border-primary/30 hover:bg-card/70 transition whitespace-nowrap"
               >
-                <Icon className="h-3 w-3 text-muted-foreground" />
-                <span className="text-[10px] md:text-xs font-medium text-muted-foreground">{item.label}</span>
+                <Icon className="h-2.5 w-2.5 text-muted-foreground/70" />
+                <span className="text-[9px] md:text-[10px] font-normal text-muted-foreground/80">{item.label}</span>
               </motion.div>
             </div>
           );
