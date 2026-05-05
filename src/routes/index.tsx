@@ -248,15 +248,14 @@ function Index() {
               Senior Product Manager with <span className="text-foreground font-medium">10+ years</span> shipping AI Agentic, CPaaS, SaaS, POS and Cybersecurity products that grow.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="mt-6 inline-flex bg-card/95 backdrop-blur border border-border rounded-2xl px-4 py-3 items-center gap-3 shadow-lg">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            <motion.div variants={fadeUp} className="mt-6 inline-flex bg-card/40 backdrop-blur-sm border border-border/40 rounded-full px-3 py-1.5 items-center gap-2">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary/80" />
               </span>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Currently building</div>
-                <div className="text-sm font-medium">Voice AI Agents</div>
-              </div>
+              <span className="text-[11px] text-muted-foreground/90">
+                Currently working on <span className="text-foreground/90 font-medium">AI Agentic Platform</span>
+              </span>
             </motion.div>
 
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap gap-3">
