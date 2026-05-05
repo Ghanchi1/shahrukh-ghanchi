@@ -130,7 +130,7 @@ const skills = [
 ];
 
 const stats = [
-  { icon: Award, value: "10+", label: "Years in Product" },
+  { icon: Award, value: "10+", label: "Years in Tech" },
   { icon: TrendingUp, value: "50%", label: "Acquisition Lift" },
   { icon: Users, value: "<3%", label: "Monthly Churn" },
   { icon: Zap, value: "30+", label: "Campaigns Led" },
