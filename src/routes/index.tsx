@@ -182,13 +182,13 @@ function ResponsiveOrbit({ items }: { items: OrbitItem[] }) {
   return (
     <>
       <div className="md:hidden">
-        <OrbitRing items={items} radius={150} duration={28} />
+        <OrbitRing items={items} radius={130} duration={28} />
       </div>
       <div className="hidden md:block lg:hidden">
-        <OrbitRing items={items} radius={230} duration={26} />
+        <OrbitRing items={items} radius={210} duration={26} />
       </div>
       <div className="hidden lg:block">
-        <OrbitRing items={items} radius={270} duration={26} />
+        <OrbitRing items={items} radius={250} duration={26} />
       </div>
     </>
   );
@@ -225,7 +225,7 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section id="top" ref={heroRef} className="relative min-h-screen flex items-center pt-24 pb-16 px-6">
+      <section id="top" ref={heroRef} className="relative min-h-screen flex items-center pt-28 pb-24 md:pb-32 px-6 overflow-hidden">
         <motion.div style={{ y, opacity }} className="max-w-6xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
           <motion.div variants={stagger} initial="hidden" animate="show">
             <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-card/50 text-xs text-muted-foreground mb-6">
@@ -236,7 +236,7 @@ function Index() {
               Available for Senior PM roles
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
+            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.05]">
               Shahrukh
               <br />
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "var(--gradient-text)" }}>
@@ -244,7 +244,7 @@ function Index() {
               </span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+            <motion.p variants={fadeUp} className="mt-6 text-base md:text-xl text-muted-foreground max-w-xl leading-relaxed">
               Senior Product Manager with <span className="text-foreground font-medium">10+ years</span> shipping AI Agentic, CPaaS, SaaS, POS and Cybersecurity products that grow.
             </motion.p>
 
@@ -267,7 +267,7 @@ function Index() {
               </a>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-6 text-sm text-muted-foreground">
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Karachi, PK</div>
               <div className="flex items-center gap-2"><Sparkles className="h-4 w-4 text-primary" /> AI Agentic PM</div>
             </motion.div>
@@ -277,7 +277,7 @@ function Index() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[22rem] aspect-square md:max-w-[34rem] lg:max-w-[40rem] flex items-center justify-center"
+            className="relative mx-auto w-full max-w-[18rem] sm:max-w-[22rem] aspect-square md:max-w-[30rem] lg:max-w-[36rem] flex items-center justify-center"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -285,7 +285,7 @@ function Index() {
               className="absolute h-64 w-64 md:h-80 md:w-80 rounded-full opacity-30 blur-2xl"
               style={{ backgroundImage: "var(--gradient-hero)" }}
             />
-            <div className="relative h-56 w-56 md:h-80 md:w-80 lg:h-96 lg:w-96 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
+            <div className="relative h-48 w-48 sm:h-56 sm:w-56 md:h-72 md:w-72 lg:h-80 lg:w-80 rounded-full overflow-hidden border border-border z-10" style={{ boxShadow: "var(--shadow-elegant)" }}>
               <img src={portrait} alt="Shahrukh Ghanchi portrait" className="h-full w-full object-cover" />
             </div>
 
